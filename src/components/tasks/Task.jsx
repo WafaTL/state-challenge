@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
+import { useState } from "react"
 
-export default class Task extends Component {
-  state = {
-    isDone: false,
-  };
 
-  onDeleteClicked = () => {
-    const { id } = this.props.task;
-    this.props.deleteTask(id);
-  };
-
-  onTaskCompleted = () => this.setState({ isDone: !this.state.isDone });
-
-  render() {
-    const { taskName } = this.props.task;
+const Task=({task,deleteTask}) => {
+  const{taskName,id}=task
+ const[isDone,setIsDone]=useState(false)
+  
+  const onDeleteClicked=()=>{
+    deleteTask(id)
+  }
+  
+  const onTaskCompleted=()=>setIsDone(!isDone)
+ 
     return (
       <li>
         <span
-          className={this.state.isDone && 'completed'}
-          onClick={this.onTaskCompleted}
+           className={isDone && 'completed'}
+           onClick={onTaskCompleted}
         >
           {taskName}
         </span>
-        <i className="fa-solid fa-trash-can" onClick={this.onDeleteClicked}></i>
+        <i className="fa-solid fa-trash-can" onClick={onDeleteClicked}></i>
       </li>
     );
   }
-}
+export default Task;

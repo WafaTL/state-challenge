@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+
 import Task from './Task';
 
-export default class TaskList extends Component {
-  render() {
-    const { tasks, deleteTask } = this.props;
-
+const TaskList=({tasks,deleteTask}) => {
+  
     return (
       <ul className="todo-list">
-        {tasks.map(task => (
+         {tasks.map(task => (
           <Task task={task} key={task.id} deleteTask={deleteTask} />
-        ))}
+        ))} 
       </ul>
     );
   }
-}
+export default TaskList;
